@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
     <link rel="stylesheet" href="libs/css/main.css" />
+    <link rel="stylesheet" href="libs/css/notification.css" />
   </head>
   <body>
   <?php  if ($session->isUserLoggedIn(true)): ?>
@@ -27,13 +28,23 @@
             <a aria-expanded="false">
               <span><?php echo remove_junk(ucfirst($user['name'])); ?> <i class="caret"></i></span>
             </a>
-             <li class="last">
-                 <a href="logout.php">
-                     <i class="glyphicon glyphicon-off"></i>
-                     Logout
-                 </a>
-             </li>
-           </ul>
+        </li>
+        <li class="last">
+            <a href="logout.php">
+              <i class="glyphicon glyphicon-off"></i>
+              Logout
+            </a>
+        </li>
+          <li class="notifications">
+            <?php 
+            $low_stock_count = count_low_stock();
+            ?>
+            <a href="Notification.php" class="notification-link">
+              <i class="glyphicon glyphicon-bell"></i>
+              <?php if($low_stock_count > 0): ?>
+                <span class="badge notification-badge"><?php echo $low_stock_count; ?></span>
+              <?php endif; ?>
+            </a>
           </li>
         </ul>
       </div>
