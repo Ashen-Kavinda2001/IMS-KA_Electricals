@@ -117,5 +117,37 @@ function randString($length = 5)
   return $str;
 }
 
+/*--------------------------------------------------------------*/
+/* Function for Counting low stock items
+/*--------------------------------------------------------------*/
+function count_low_stock() {
+  global $db;
+  $sql = "SELECT COUNT(*) as count FROM products WHERE quantity <= minimum_quantity";
+  $result = $db->query($sql);
+  if($result) {
+    $row = $db->fetch_assoc($result);
+    return $row['count'];
+  }
+  return 0;
+}
+
+/*--------------------------------------------------------------*/
+/* Function for Getting low stock items
+/*--------------------------------------------------------------*/
+function get_low_stock_items() {
+  global $db;
+  $sql = "SELECT name, quantity, minimum_quantity FROM products WHERE quantity <= minimum_quantity ORDER BY quantity ASC";
+  $result = $db->query($sql);
+  $low_stock = array();
+  if($result) {
+    while($row = $db->fetch_assoc($result)) {
+      $low_stock[] = $row;
+    }
+  }
+  return $low_stock;
+}
+
+?>
+
 
 ?>

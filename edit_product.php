@@ -15,7 +15,7 @@ if(!$product){
 ?>
 <?php
  if(isset($_POST['product'])){
-    $req_fields = array('product-title','product-categorie','product-quantity','buying-price', 'saleing-price' );
+    $req_fields = array('product-title','product-categorie','product-quantity','buying-price', 'saleing-price', 'minimum-quantity' );
     validate_fields($req_fields);
 
    if(empty($errors)){
@@ -24,6 +24,7 @@ if(!$product){
        $p_qty   = remove_junk($db->escape($_POST['product-quantity']));
        $p_buy   = remove_junk($db->escape($_POST['buying-price']));
        $p_sale  = remove_junk($db->escape($_POST['saleing-price']));
+       $p_min   = remove_junk($db->escape($_POST['minimum-quantity']));
        if (is_null($_POST['product-photo']) || $_POST['product-photo'] === "") {
          $media_id = '0';
        } else {
@@ -31,7 +32,8 @@ if(!$product){
        }
        $query   = "UPDATE products SET";
        $query  .=" name ='{$p_name}', quantity ='{$p_qty}',";
-       $query  .=" buy_price ='{$p_buy}', sale_price ='{$p_sale}', categorie_id ='{$p_cat}',media_id='{$media_id}'";
+       $query  .=" buy_price ='{$p_buy}', sale_price ='{$p_sale}', categorie_id ='{$p_cat}',";
+       $query  .=" media_id='{$media_id}', minimum_quantity='{$p_min}'";
        $query  .=" WHERE id ='{$product['id']}'";
        $result = $db->query($query);
                if($result && $db->affected_rows() === 1){
@@ -61,7 +63,7 @@ if(!$product){
         <div class="panel-heading">
           <strong>
             <span class="glyphicon glyphicon-th"></span>
-            <span>Add New Product</span>
+            <span>Edit Product</span>
          </strong>
         </div>
         <div class="panel-body">
@@ -100,7 +102,7 @@ if(!$product){
 
               <div class="form-group">
                <div class="row">
-                 <div class="col-md-4">
+                 <div class="col-md-3">
                   <div class="form-group">
                     <label for="qty">Quantity</label>
                     <div class="input-group">
@@ -111,7 +113,7 @@ if(!$product){
                    </div>
                   </div>
                  </div>
-                 <div class="col-md-4">
+                 <div class="col-md-3">
                   <div class="form-group">
                     <label for="qty">Buying price</label>
                     <div class="input-group">
@@ -123,7 +125,7 @@ if(!$product){
                    </div>
                   </div>
                  </div>
-                  <div class="col-md-4">
+                  <div class="col-md-3">
                    <div class="form-group">
                      <label for="qty">Selling price</label>
                      <div class="input-group">
@@ -132,6 +134,17 @@ if(!$product){
                        </span>
                        <input type="number" class="form-control" name="saleing-price" value="<?php echo remove_junk($product['sale_price']);?>">
                        <span class="input-group-addon">.00</span>
+                    </div>
+                   </div>
+                  </div>
+                  <div class="col-md-3">
+                   <div class="form-group">
+                     <label for="qty">Minimum Quantity</label>
+                     <div class="input-group">
+                       <span class="input-group-addon">
+                         <i class="glyphicon glyphicon-warning-sign"></i>
+                       </span>
+                       <input type="number" class="form-control" name="minimum-quantity" value="<?php echo remove_junk($product['minimum_quantity']);?>">
                     </div>
                    </div>
                   </div>
