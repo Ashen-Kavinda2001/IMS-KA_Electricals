@@ -1,0 +1,8 @@
+Database Name: inventory_system
+
+
+Login 
+
+Username: Ash123
+Password: 123
+
