@@ -10,7 +10,7 @@
   /* Body styling for centering content */
   body {
     font-family: 'Arial', sans-serif;
-    background-color: #ADDFFF;
+    background-color:rgb(89, 186, 250);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,20 +21,21 @@
   /* Login panel styling */
   .login-page {
     background-color: #fff;
-    padding: 40px 50px;
-    border-radius: 8px;
+    padding: 150px 75px;
+    border-radius: 10px;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
+    width: 200%;
+    max-width: 475px;
     text-align: center;
   }
 
   /* Title and subheading */
   .login-page h1 {
-    font-size: 25px;
+    font-size: 35px;
     font-weight: bold;
     color: #333;
     margin-bottom: 15px;
+    
   }
 
   .login-page h4 {
