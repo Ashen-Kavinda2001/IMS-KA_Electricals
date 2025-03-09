@@ -148,6 +148,3 @@ function get_low_stock_items() {
 }
 
 ?>
-
-
-?>
