@@ -1,4 +1,4 @@
-Database Name: inventory_system
+Database Name: testinv
 
 
 Login 
