@@ -29,6 +29,16 @@
     </ul>
   </li>
   <li>
+  <a href="#" class="submenu-toggle">
+    <i class="glyphicon glyphicon-user"></i>
+    <span>Customers</span>
+  </a>
+  <ul class="nav submenu">
+    <li><a href="add_customer.php">Add Customer</a></li>
+    <li><a href="customers_list.php">Customers List</a></li>
+  </ul>
+</li>
+  <li>
     <a href="#" class="submenu-toggle">
       <i class="glyphicon glyphicon-share-alt"></i>
       <span>Return</span>
@@ -41,7 +51,7 @@
   <li>
     <a href="#" class="submenu-toggle" id="userManagementLink">
       <i class="glyphicon glyphicon-user"></i>
-      <span>User Management</span>
+      <span>Manage Users</span>
     </a>
     <ul class="nav submenu">
       <li><a href="#" onclick="restrictAccess('Users')">Manage Users</a></li>
