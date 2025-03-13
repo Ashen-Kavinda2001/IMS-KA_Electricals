@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 10, 2025 at 04:32 PM
+-- Generation Time: Mar 13, 2025 at 09:57 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -108,18 +108,39 @@ CREATE TABLE `products` (
 
 INSERT INTO `products` (`id`, `name`, `quantity`, `buy_price`, `sale_price`, `categorie_id`, `media_id`, `date`, `minimum_quantity`) VALUES
 (2, 'Box Varieties', 11995, 55.00, 130.00, 4, 0, '2021-04-04 18:44:52', 10),
-(3, 'Wheat', 69, 2.00, 5.00, 2, 0, '2021-04-04 18:48:53', 100),
-(4, 'Timber', 1200, 780.00, 1069.00, 2, 0, '2021-04-04 19:03:23', 500),
+(3, 'Wheat', 71, 2.00, 5.00, 2, 0, '2021-04-04 18:48:53', 100),
+(4, 'Timber', 1199, 780.00, 1069.00, 2, 0, '2021-04-04 19:03:23', 500),
 (5, 'W1848 Oscillating Floor Drill Press', 26, 299.00, 494.00, 5, 0, '2021-04-04 19:11:30', 20),
 (6, 'Portable Band Saw XBP02Z', 42, 280.00, 415.00, 5, 0, '2021-04-04 19:13:35', 30),
 (7, 'Life Breakfast Cereal-3 Pk', 107, 3.00, 7.00, 3, 0, '2021-04-04 19:15:38', 150),
-(8, 'Chicken of the Sea Sardines W', 101, 13.00, 20.00, 3, 0, '2021-04-04 19:17:11', 120),
+(8, 'Chicken of the Sea Sardines W', 100, 13.00, 20.00, 3, 0, '2021-04-04 19:17:11', 120),
 (9, 'Disney Woody - Action Figure', 64, 29.00, 55.00, 3, 0, '2021-04-04 19:19:20', 50),
 (10, 'Hasbro Marvel Legends Series Toys', 102, 219.00, 322.00, 3, 0, '2021-04-04 19:20:28', 100),
 (11, 'Packing Chips', 75, 21.00, 31.00, 4, 0, '2021-04-04 19:25:22', 200),
 (12, 'Classic Desktop Tape Dispenser 38', 160, 5.00, 10.00, 8, 0, '2021-04-04 19:48:01', 100),
 (13, 'Small Bubble Cushioning Wrap', 199, 8.00, 19.00, 4, 0, '2021-04-04 19:49:00', 300),
 (14, 'test2555', 1000, 500.00, 1000.00, 3, 0, '2025-02-02 12:01:57', 500);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `purchase_returns`
+--
+
+CREATE TABLE `purchase_returns` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `product_id` int(11) UNSIGNED NOT NULL,
+  `return_quantity` int(11) NOT NULL,
+  `return_date` datetime NOT NULL,
+  `reason` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `purchase_returns`
+--
+
+INSERT INTO `purchase_returns` (`id`, `product_id`, `return_quantity`, `return_date`, `reason`) VALUES
+(1, 4, 1, '2025-03-13 21:53:07', 'tes12');
 
 -- --------------------------------------------------------
 
@@ -140,7 +161,7 @@ CREATE TABLE `sales` (
 --
 
 INSERT INTO `sales` (`id`, `product_id`, `qty`, `price`, `date`) VALUES
-(2, 3, 3, 15.00, '2021-04-04'),
+(2, 3, 1, 15.00, '2021-04-04'),
 (3, 10, 6, 1932.00, '2021-04-04'),
 (4, 6, 2, 830.00, '2021-04-04'),
 (5, 12, 5, 50.00, '2021-04-04'),
@@ -168,7 +189,34 @@ INSERT INTO `sales` (`id`, `product_id`, `qty`, `price`, `date`) VALUES
 (28, 11, 1, 31.00, '2025-03-09'),
 (29, 8, 1, 20.00, '2025-03-10'),
 (30, 10, 1, 322.00, '2025-03-10'),
-(32, 10, 1, 322.00, '2025-03-10');
+(32, 10, 1, 322.00, '2025-03-10'),
+(33, 8, 1, 20.00, '2025-03-13');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sales_returns`
+--
+
+CREATE TABLE `sales_returns` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `sale_id` int(11) UNSIGNED NOT NULL,
+  `product_id` int(11) UNSIGNED NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `price` decimal(25,2) NOT NULL,
+  `return_date` date NOT NULL,
+  `reason` varchar(255) DEFAULT NULL,
+  `return_condition` enum('good','damaged','defective','other') NOT NULL,
+  `returned_by` int(11) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `sales_returns`
+--
+
+INSERT INTO `sales_returns` (`id`, `sale_id`, `product_id`, `quantity`, `price`, `return_date`, `reason`, `return_condition`, `returned_by`) VALUES
+(1, 2, 3, 1, 15.00, '2025-03-13', 'test2', 'damaged', 9),
+(2, 2, 3, 1, 15.00, '2025-03-13', 't31', 'good', 9);
 
 -- --------------------------------------------------------
 
@@ -192,9 +240,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `password`, `user_level`, `image`, `status`, `last_login`) VALUES
-(7, 'Din', 'd1', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 3, 'no_image.jpg', 1, '2025-02-01 13:59:10'),
-(9, 'te', 'te1', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 1, 'no_image.jpg', 1, '2025-03-10 15:07:27'),
-(10, 'Ashen', 'Ash123', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 1, 'no_image.jpg', 1, NULL);
+(7, 'Din', 'd1', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 3, 'no_image.jpg', 1, '2025-03-13 15:29:50'),
+(9, 'te', 'te1', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 1, 'no_image.jpg', 1, '2025-03-13 20:16:43'),
+(10, 'Ashen', 'Ash123', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 1, 'no_image.jpg', 1, NULL),
+(11, 'Dinith', 'Dinith', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 1, 'no_image.jpg', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -252,11 +301,26 @@ ALTER TABLE `products`
   ADD KEY `media_id` (`media_id`);
 
 --
+-- Indexes for table `purchase_returns`
+--
+ALTER TABLE `purchase_returns`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_id` (`product_id`);
+
+--
 -- Indexes for table `sales`
 --
 ALTER TABLE `sales`
   ADD PRIMARY KEY (`id`),
   ADD KEY `product_id` (`product_id`);
+
+--
+-- Indexes for table `sales_returns`
+--
+ALTER TABLE `sales_returns`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_id` (`product_id`),
+  ADD KEY `returned_by` (`returned_by`);
 
 --
 -- Indexes for table `users`
@@ -301,16 +365,28 @@ ALTER TABLE `products`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
+-- AUTO_INCREMENT for table `purchase_returns`
+--
+ALTER TABLE `purchase_returns`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+
+--
+-- AUTO_INCREMENT for table `sales_returns`
+--
+ALTER TABLE `sales_returns`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `user_groups`
@@ -329,10 +405,23 @@ ALTER TABLE `products`
   ADD CONSTRAINT `FK_products` FOREIGN KEY (`categorie_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `purchase_returns`
+--
+ALTER TABLE `purchase_returns`
+  ADD CONSTRAINT `purchase_returns_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE;
+
+--
 -- Constraints for table `sales`
 --
 ALTER TABLE `sales`
   ADD CONSTRAINT `SK` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `sales_returns`
+--
+ALTER TABLE `sales_returns`
+  ADD CONSTRAINT `sales_returns_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
+  ADD CONSTRAINT `sales_returns_ibfk_2` FOREIGN KEY (`returned_by`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `users`

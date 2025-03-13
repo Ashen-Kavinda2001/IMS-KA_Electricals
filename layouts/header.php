@@ -17,10 +17,10 @@
   <body>
   <?php  if ($session->isUserLoggedIn(true)): ?>
     <header id="header">
-      <div class="logo pull-left">K A Electricals</div>
+      <div class="logo pull-left" style="font-size: 20px;">K A Electricals</div>
       <div class="header-content">
       <div class="header-date pull-left">
-        <strong><?php echo date("F j, Y, g:i a");?></strong>
+        <strong id="dynamic-datetime" style="color: black; font-size: 16px;"></strong>
       </div>
       <div class="pull-right clearfix">
         <ul class="info-menu list-inline list-unstyled">
@@ -30,10 +30,10 @@
             </a>
         </li>
         <li class="last">
-            <a href="logout.php">
-              <i class="glyphicon glyphicon-off"></i>
-              Logout
-            </a>
+      <a href="logout.php" style="color: red; font-weight: bold;">
+      <i class="glyphicon glyphicon-off"></i>
+       Logout
+      </a>
         </li>
           <li class="notifications">
             <?php 
@@ -70,3 +70,43 @@
 
 <div class="page">
   <div class="container-fluid">
+
+<!-- JavaScript for dynamic date and time update in IST -->
+<script>
+  // Function to update the date and time in IST
+  function updateDateTime() {
+    const datetimeElement = document.getElementById('dynamic-datetime');
+    if (!datetimeElement) return; // Safety check
+    
+    // Get the current time
+    const now = new Date();
+    
+    // Format for IST (UTC+5:30)
+    // Convert to IST - this is the most reliable method for showing IST time
+    const options = { 
+      timeZone: 'Asia/Kolkata',
+      month: 'long',    // Full month name
+      day: 'numeric',   // Day without leading zeros
+      year: 'numeric',  // Full year
+      hour: 'numeric',  // 12-hour format
+      minute: '2-digit', // Minutes with leading zeros
+      second: '2-digit', // Seconds with leading zeros
+      hour12: true      // am/pm
+    };
+    
+    // Format the date and time using the browser's built-in formatter with IST timezone
+    const formattedDateTime = now.toLocaleString('en-US', options);
+    
+    // Update the content of the element
+    datetimeElement.textContent = formattedDateTime;
+  }
+  
+  // Run when DOM is loaded
+  document.addEventListener('DOMContentLoaded', function() {
+    // Update immediately
+    updateDateTime();
+    
+    // Then update every second
+    setInterval(updateDateTime, 1000);
+  });
+</script>
