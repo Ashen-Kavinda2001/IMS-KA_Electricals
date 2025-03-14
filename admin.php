@@ -2,6 +2,51 @@
 <link rel="stylesheet" href="libs/css/bootstrap.min.css">
 <link rel="stylesheet" href="libs/css/custom.css">
 
+<style>
+.dashboard-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    border-radius: 16px;
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+}
+
+.bg-green {
+    background: linear-gradient(135deg, #6fcf97, #27ae60);
+}
+
+.card-icon {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.card-content h2 {
+    font-size: 23px;
+    margin: 0;
+    color: #ffffff;
+}
+
+.card-content p {
+    font-size: 15px;
+    margin: 4px 0 0;
+    color: #e0f2e9;
+}
+</style>
+
+
 <?php
   $page_title = 'Admin Home Page';
   require_once('includes/load.php');
@@ -68,16 +113,16 @@
 
     <!-- Sales Card -->
     <div class="col-lg-3 col-sm-6 col-12 d-flex">
-        <a href="sales.php" class="dashboard-card bg-green">
-            <div class="card-icon">
-                <i class="glyphicon glyphicon-usd"></i>
-            </div>
-            <div class="card-content">
-                <h2><?php echo $c_sale['total']; ?></h2>
-                <p>Sales</p>
-            </div>
-        </a>
-    </div>
+    <a href="sales.php" class="dashboard-card bg-green">
+        <div class="card-icon" style="font-size: 22px; font-weight: bold; margin-bottom: -0.3px;">
+            R.s
+        </div>
+        <div class="card-content">
+            <h2 style="margin-top: 0;"><?php echo $c_sale['total']; ?></h2>
+            <p>Sales</p>
+        </div>
+    </a>
+</div>
 </div>
 <br>
 <!-- Rest of the original content remains the same -->

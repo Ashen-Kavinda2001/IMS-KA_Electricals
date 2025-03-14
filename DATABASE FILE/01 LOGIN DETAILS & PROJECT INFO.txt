@@ -1,8 +1,0 @@
-Database Name: testinv
-
-
-Login 
-
-Username: Ash123
-Password: 123
-

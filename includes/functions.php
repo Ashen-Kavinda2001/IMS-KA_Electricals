@@ -69,6 +69,7 @@ function redirect($url, $permanent = false)
 
     exit();
 }
+
 /*--------------------------------------------------------------*/
 /* Function for find out total saleing price, buying price and profit
 /*--------------------------------------------------------------*/
@@ -81,6 +82,7 @@ function total_price($totals){
      $profit = $sum - $sub;
    }
    return array($sum,$profit);
+
 }
 /*--------------------------------------------------------------*/
 /* Function for Readable date time
@@ -91,6 +93,7 @@ function read_date($str){
      else
       return null;
   }
+  
 /*--------------------------------------------------------------*/
 /* Function for  Readable Make date time
 /*--------------------------------------------------------------*/
@@ -145,6 +148,62 @@ function get_low_stock_items() {
     }
   }
   return $low_stock;
+}
+
+
+/*--------------------------------------------------------------*/
+/* Function for find all sales returns with product and user information
+/*--------------------------------------------------------------*/
+function find_all_returns() {
+  global $db;
+  $sql = "SELECT r.id, r.sale_id, r.product_id, r.quantity, r.price, r.return_date, r.reason, r.return_condition, r.returned_by, 
+          p.name as product_name, u.name as username 
+          FROM sales_returns r 
+          JOIN products p ON p.id = r.product_id 
+          JOIN users u ON u.id = r.returned_by 
+          ORDER BY r.return_date DESC";
+  return find_by_sql($sql);
+}
+
+/*--------------------------------------------------------------*/
+/* Function for find sales return by ID
+/*--------------------------------------------------------------*/
+function find_return_by_id($id) {
+  global $db;
+  $id = (int)$id;
+  $sql = "SELECT r.*, p.name as product_name, u.name as username 
+          FROM sales_returns r 
+          JOIN products p ON p.id = r.product_id 
+          JOIN users u ON u.id = r.returned_by 
+          WHERE r.id = '{$id}' LIMIT 1";
+  $result = find_by_sql($sql);
+  return $result ? $result[0] : null;
+}
+
+/*--------------------------------------------------------------*/
+/* Function for find all returns for a specific sale
+/*--------------------------------------------------------------*/
+function find_returns_by_sale($sale_id) {
+  global $db;
+  $sale_id = (int)$sale_id;
+  $sql = "SELECT r.*, p.name as product_name 
+          FROM sales_returns r 
+          JOIN products p ON p.id = r.product_id 
+          WHERE r.sale_id = '{$sale_id}'";
+  return find_by_sql($sql);
+}
+
+/*--------------------------------------------------------------*/
+/* Function for find all returns for a specific product
+/*--------------------------------------------------------------*/
+function find_returns_by_product($product_id) {
+  global $db;
+  $product_id = (int)$product_id;
+  $sql = "SELECT r.*, p.name as product_name 
+          FROM sales_returns r 
+          JOIN products p ON p.id = r.product_id 
+          WHERE r.product_id = '{$product_id}'";
+  return find_by_sql($sql);
 }
 
 ?>
