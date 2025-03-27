@@ -95,7 +95,7 @@ if(isset($_POST['return_sale'])) {
             <span class="input-group-btn">
               <button type="submit" class="btn btn-primary">Find Sale</button>
             </span>
-            <input type="text" id="sale_id_input" class="form-control" name="sale_id" placeholder="Enter Sale ID">
+            <input type="text" id="sale_id_input" class="form-control" name="sale_id" placeholder="Enter Sale ID in Receipt">
          </div>
          <div id="sale_result" class="list-group"></div>
         </div>

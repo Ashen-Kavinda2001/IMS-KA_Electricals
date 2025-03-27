@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 13, 2025 at 09:57 PM
+-- Generation Time: Mar 27, 2025 at 07:47 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -38,6 +38,7 @@ CREATE TABLE `categories` (
 
 INSERT INTO `categories` (`id`, `name`) VALUES
 (1, 'Demo Category'),
+(9, 'Demo887'),
 (3, 'Finished Goods'),
 (5, 'Machinery'),
 (4, 'Packing Materials'),
@@ -62,15 +63,6 @@ CREATE TABLE `customers` (
   `email` varchar(100) DEFAULT NULL,
   `date_added` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `customers`
---
-
-INSERT INTO `customers` (`customer_id`, `customer_name`, `address`, `city`, `province`, `zip_code`, `telephone`, `email`, `date_added`) VALUES
-(1, 'rf', 'Colombo 07, Colombo', 'Colombo', 'fr', '00700', '342442444', 'dinithmain@gmail.com', '2025-03-10 14:27:30'),
-(2, 'fsdff', 'Colombo 07, Colombo', 'Colombo', 'dd', '00700', '342355', 'fdff@gmail.com', '2025-03-10 10:14:55'),
-(3, 'yhtuty', 'tg', 'rtgtr', 'rretet', 'reter', '453545', '', '2025-03-10 10:19:53');
 
 -- --------------------------------------------------------
 
@@ -107,19 +99,17 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `quantity`, `buy_price`, `sale_price`, `categorie_id`, `media_id`, `date`, `minimum_quantity`) VALUES
-(2, 'Box Varieties', 11995, 55.00, 130.00, 4, 0, '2021-04-04 18:44:52', 10),
-(3, 'Wheat', 71, 2.00, 5.00, 2, 0, '2021-04-04 18:48:53', 100),
-(4, 'Timber', 1199, 780.00, 1069.00, 2, 0, '2021-04-04 19:03:23', 500),
-(5, 'W1848 Oscillating Floor Drill Press', 26, 299.00, 494.00, 5, 0, '2021-04-04 19:11:30', 20),
-(6, 'Portable Band Saw XBP02Z', 42, 280.00, 415.00, 5, 0, '2021-04-04 19:13:35', 30),
-(7, 'Life Breakfast Cereal-3 Pk', 107, 3.00, 7.00, 3, 0, '2021-04-04 19:15:38', 150),
-(8, 'Chicken of the Sea Sardines W', 100, 13.00, 20.00, 3, 0, '2021-04-04 19:17:11', 120),
-(9, 'Disney Woody - Action Figure', 64, 29.00, 55.00, 3, 0, '2021-04-04 19:19:20', 50),
-(10, 'Hasbro Marvel Legends Series Toys', 102, 219.00, 322.00, 3, 0, '2021-04-04 19:20:28', 100),
-(11, 'Packing Chips', 75, 21.00, 31.00, 4, 0, '2021-04-04 19:25:22', 200),
-(12, 'Classic Desktop Tape Dispenser 38', 160, 5.00, 10.00, 8, 0, '2021-04-04 19:48:01', 100),
-(13, 'Small Bubble Cushioning Wrap', 199, 8.00, 19.00, 4, 0, '2021-04-04 19:49:00', 300),
-(14, 'test2555', 1000, 500.00, 1000.00, 3, 0, '2025-02-02 12:01:57', 500);
+(3, 'Wheat', 61, 2.00, 5.00, 2, 0, '2021-04-04 18:48:53', 100),
+(6, 'Portable Band Saw XBP02Z', 34, 280.00, 415.00, 5, 0, '2021-04-04 19:13:35', 30),
+(8, 'Chicken of the Sea Sardines W', 86, 13.00, 20.00, 3, 0, '2021-04-04 19:17:11', 120),
+(10, 'Hasbro Marvel Legends Series Toys', 96, 219.00, 322.00, 3, 0, '2021-04-04 19:20:28', 100),
+(11, 'Packing Chips', 73, 21.00, 31.00, 4, 0, '2021-04-04 19:25:22', 200),
+(12, 'Classic Desktop Tape Dispenser 38', 157, 5.00, 10.00, 8, 0, '2021-04-04 19:48:01', 100),
+(13, 'Small Bubble Cushioning Wrap', 198, 8.00, 19.00, 4, 0, '2021-04-04 19:49:00', 300),
+(14, 'test2555', 1000, 500.00, 1000.00, 3, 0, '2025-02-02 12:01:57', 500),
+(16, 'test32', 444, 56.00, 56.00, 5, 0, '2025-03-27 16:57:02', 3455),
+(17, 'test2555333', 777, 455.00, 667.00, 5, 0, '2025-03-27 16:58:42', 455),
+(18, 'test2555dd', 55, 445.78, 565.87, 5, 0, '2025-03-27 17:05:19', 5444);
 
 -- --------------------------------------------------------
 
@@ -140,7 +130,7 @@ CREATE TABLE `purchase_returns` (
 --
 
 INSERT INTO `purchase_returns` (`id`, `product_id`, `return_quantity`, `return_date`, `reason`) VALUES
-(1, 4, 1, '2025-03-13 21:53:07', 'tes12');
+(2, 6, 4, '2025-03-27 17:55:02', 'tg');
 
 -- --------------------------------------------------------
 
@@ -161,36 +151,26 @@ CREATE TABLE `sales` (
 --
 
 INSERT INTO `sales` (`id`, `product_id`, `qty`, `price`, `date`) VALUES
-(2, 3, 1, 15.00, '2021-04-04'),
-(3, 10, 6, 1932.00, '2021-04-04'),
-(4, 6, 2, 830.00, '2021-04-04'),
-(5, 12, 5, 50.00, '2021-04-04'),
-(6, 13, 21, 399.00, '2021-04-04'),
-(7, 7, 5, 35.00, '2021-04-04'),
-(8, 9, 2, 110.00, '2021-04-04'),
-(9, 8, 1, 20.00, '2025-02-01'),
-(10, 8, 1, 20.00, '2025-02-01'),
-(11, 8, 1, 20.00, '2025-02-01'),
-(12, 2, 1, 130.00, '2025-02-01'),
-(13, 8, 1, 1356.00, '2025-02-01'),
-(14, 2, 1, 130.00, '2025-02-01'),
-(15, 10, 1, 322.00, '2025-02-01'),
-(16, 8, 1, 20.00, '2025-02-01'),
-(17, 2, 1, 130.00, '2025-02-02'),
-(18, 8, 1, 20.00, '2025-02-02'),
-(20, 2, 2, 260.00, '2025-02-04'),
-(21, 9, 1, 55.00, '2025-03-09'),
-(22, 11, 1, 31.00, '2025-03-09'),
-(23, 11, 1, 31.00, '2025-03-09'),
-(24, 9, 1, 55.00, '2025-03-09'),
-(25, 10, 1, 322.00, '2025-03-09'),
-(26, 9, 1, 55.00, '2025-03-09'),
-(27, 8, 2, 40.00, '2025-03-09'),
-(28, 11, 1, 31.00, '2025-03-09'),
-(29, 8, 1, 20.00, '2025-03-10'),
-(30, 10, 1, 322.00, '2025-03-10'),
-(32, 10, 1, 322.00, '2025-03-10'),
-(33, 8, 1, 20.00, '2025-03-13');
+(44, 8, 1, 20.00, '2025-03-27'),
+(45, 10, 1, 322.00, '2025-03-27'),
+(46, 8, 1, 20.00, '2025-03-27'),
+(47, 8, 1, 20.00, '2025-03-27'),
+(48, 12, 1, 10.00, '2025-03-27'),
+(49, 8, 1, 20.00, '2025-03-27'),
+(50, 8, 1, 20.00, '2025-03-27'),
+(51, 8, 1, 20.00, '2025-03-27'),
+(52, 12, 1, 10.00, '2025-03-27'),
+(53, 11, 1, 31.00, '2025-03-27'),
+(55, 12, 1, 10.00, '2025-03-27'),
+(56, 6, 1, 415.00, '2025-03-27'),
+(58, 10, 1, 322.00, '2025-03-27'),
+(60, 8, 1, 20.00, '2025-03-27'),
+(62, 10, 1, 322.00, '2025-03-27'),
+(63, 10, 1, 322.00, '2025-03-27'),
+(64, 13, 1, 19.00, '2025-03-27'),
+(65, 3, 10, 50.00, '2025-03-27'),
+(66, 10, 1, 322.00, '2025-03-27'),
+(67, 11, 1, 31.00, '2025-03-27');
 
 -- --------------------------------------------------------
 
@@ -216,7 +196,8 @@ CREATE TABLE `sales_returns` (
 
 INSERT INTO `sales_returns` (`id`, `sale_id`, `product_id`, `quantity`, `price`, `return_date`, `reason`, `return_condition`, `returned_by`) VALUES
 (1, 2, 3, 1, 15.00, '2025-03-13', 'test2', 'damaged', 9),
-(2, 2, 3, 1, 15.00, '2025-03-13', 't31', 'good', 9);
+(2, 2, 3, 1, 15.00, '2025-03-13', 't31', 'good', 9),
+(3, 57, 8, 1, 20.00, '2025-03-27', 'TE1', 'damaged', 9);
 
 -- --------------------------------------------------------
 
@@ -241,7 +222,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `username`, `password`, `user_level`, `image`, `status`, `last_login`) VALUES
 (7, 'Din', 'd1', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 3, 'no_image.jpg', 1, '2025-03-13 15:29:50'),
-(9, 'te', 'te1', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 1, 'no_image.jpg', 1, '2025-03-13 20:16:43'),
+(9, 'te', 'te1', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 1, 'no_image.jpg', 1, '2025-03-27 16:25:08'),
 (10, 'Ashen', 'Ash123', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 1, 'no_image.jpg', 1, NULL),
 (11, 'Dinith', 'Dinith', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 1, 'no_image.jpg', 1, NULL);
 
@@ -344,13 +325,13 @@ ALTER TABLE `user_groups`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `media`
@@ -362,25 +343,25 @@ ALTER TABLE `media`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `purchase_returns`
 --
 ALTER TABLE `purchase_returns`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT for table `sales_returns`
 --
 ALTER TABLE `sales_returns`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`

@@ -1,4 +1,3 @@
-
 <link rel="stylesheet" href="libs/css/bootstrap.min.css">
 <link rel="stylesheet" href="libs/css/custom.css">
 
@@ -58,6 +57,13 @@
  $c_product       = count_by_id('products');
  $c_sale          = count_by_id('sales');
  $c_user          = count_by_id('users');
+ 
+ // Get total sales amount (sum of all sales prices)
+ $sql = "SELECT SUM(price) as total_sales FROM sales";
+ $result = $db->query($sql);
+ $total_sales_amount = $db->fetch_assoc($result);
+ $total_sales_amount = $total_sales_amount['total_sales'];
+ 
  $products_sold   = find_higest_saleing_product('10');
  $recent_products = find_recent_product_added('5');
  $recent_sales    = find_recent_sale_added('5')
@@ -111,18 +117,18 @@
         </a>
     </div>
 
-    <!-- Sales Card -->
+    <!-- Sales Card - Updated to show total sales amount -->
     <div class="col-lg-3 col-sm-6 col-12 d-flex">
-    <a href="sales.php" class="dashboard-card bg-green">
-        <div class="card-icon" style="font-size: 22px; font-weight: bold; margin-bottom: -0.3px;">
-            R.s
-        </div>
-        <div class="card-content">
-            <h2 style="margin-top: 0;"><?php echo $c_sale['total']; ?></h2>
-            <p>Sales</p>
-        </div>
-    </a>
-</div>
+        <a href="sales.php" class="dashboard-card bg-green">
+            <div class="card-icon" style="font-size: 22px; font-weight: bold; margin-bottom: -0.3px;">
+                R.s
+            </div>
+            <div class="card-content">
+                <h2 style="margin-top: 0;"><?php echo number_format($total_sales_amount, 2); ?></h2>
+                <p>Total Sales (<?php echo $c_sale['total']; ?> orders)</p>
+            </div>
+        </a>
+    </div>
 </div>
 <br>
 <!-- Rest of the original content remains the same -->
@@ -185,7 +191,7 @@
            </a>
            </td>
            <td><?php echo remove_junk(ucfirst($recent_sale['date'])); ?></td>
-           <td>$<?php echo remove_junk(first_character($recent_sale['price'])); ?></td>
+           <td>R.s <?php echo remove_junk(first_character($recent_sale['price'])); ?></td>
         </tr>
 
        <?php endforeach; ?>
@@ -215,7 +221,7 @@
                 <?php endif;?>
                 <?php echo remove_junk(first_character($recent_product['name']));?>
                   <span class="label label-warning pull-right">
-                 $<?php echo (int)$recent_product['sale_price']; ?>
+                 R.s <?php echo (int)$recent_product['sale_price']; ?>
                   </span>
                 </h4>
                 <span class="list-group-item-text pull-right">
