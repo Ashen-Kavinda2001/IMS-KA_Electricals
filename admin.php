@@ -80,7 +80,7 @@
 <div class="row dashboard-cards">
     <!-- Users Card -->
     <div class="col-lg-3 col-sm-6 col-12 d-flex">
-        <a href="users.php" class="dashboard-card bg-secondary1">
+        <a class="dashboard-card bg-secondary1">
             <div class="card-icon">
                 <i class="glyphicon glyphicon-user"></i>
             </div>
@@ -93,7 +93,7 @@
 
     <!-- Categories Card -->
     <div class="col-lg-3 col-sm-6 col-12 d-flex">
-        <a href="categorie.php" class="dashboard-card bg-red">
+        <a class="dashboard-card bg-red">
             <div class="card-icon">
                 <i class="glyphicon glyphicon-th-large"></i>
             </div>
@@ -106,7 +106,7 @@
 
     <!-- Products Card -->
     <div class="col-lg-3 col-sm-6 col-12 d-flex">
-        <a href="product.php" class="dashboard-card bg-blue2">
+        <a class="dashboard-card bg-blue2">
             <div class="card-icon">
                 <i class="glyphicon glyphicon-shopping-cart"></i>
             </div>
@@ -119,7 +119,7 @@
 
     <!-- Sales Card - Updated to show total sales amount -->
     <div class="col-lg-3 col-sm-6 col-12 d-flex">
-        <a href="sales.php" class="dashboard-card bg-green">
+        <a class="dashboard-card bg-green">
             <div class="card-icon" style="font-size: 22px; font-weight: bold; margin-bottom: -0.3px;">
                 Rs.
             </div>
@@ -231,5 +231,5 @@
   <div class="row">
 
   </div>
-//end
+
 <?php include_once('layouts/footer.php'); ?>
