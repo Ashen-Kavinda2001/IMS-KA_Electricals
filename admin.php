@@ -209,27 +209,21 @@
         </strong>
       </div>
       <div class="panel-body">
-
-        <div class="list-group">
-      <?php foreach ($recent_products as  $recent_product): ?>
-            <a class="list-group-item clearfix" href="edit_product.php?id=<?php echo    (int)$recent_product['id'];?>">
-                <h4 class="list-group-item-heading">
-                 <?php if($recent_product['media_id'] === '0'): ?>
-                    <img class="img-avatar img-circle" src="uploads/products/no_image.png" alt="">
-                  <?php else: ?>
-                  <img class="img-avatar img-circle" src="uploads/products/<?php echo $recent_product['image'];?>" alt="" />
-                <?php endif;?>
-                <?php echo remove_junk(first_character($recent_product['name']));?>
-                  <span class="label label-warning pull-right">
-                 R.s <?php echo (int)$recent_product['sale_price']; ?>
-                  </span>
-                </h4>
-                <span class="list-group-item-text pull-right">
-                <?php echo remove_junk(first_character($recent_product['categorie'])); ?>
-              </span>
-          </a>
-      <?php endforeach; ?>
-    </div>
+      <div class="list-group">
+  <?php foreach ($recent_products as  $recent_product): ?>
+    <a class="list-group-item clearfix" href="edit_product.php?id=<?php echo (int)$recent_product['id'];?>">
+      <h4 class="list-group-item-heading">
+        <?php echo remove_junk(first_character($recent_product['name']));?>
+        <span class="label label-warning pull-right">
+          Rs. <?php echo (int)$recent_product['sale_price']; ?>
+        </span>
+      </h4>
+      <span class="list-group-item-text pull-right">
+        <?php echo remove_junk(first_character($recent_product['categorie'])); ?>
+      </span>
+    </a>
+  <?php endforeach; ?>
+</div>
   </div>
  </div>
 </div>
