@@ -231,5 +231,5 @@
   <div class="row">
 
   </div>
-
+//end
 <?php include_once('layouts/footer.php'); ?>
